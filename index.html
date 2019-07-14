@@ -6,12 +6,31 @@
         body {
             display: flex;
             justify-content: center;
+            flex-direction: column;
             margin: 0;
+        }
+
+        #dataDiv {
+            margin: 50px auto 20px;
+        }
+
+        #myDiv {
+            margin: 0 auto;
         }
 
     </style>
 </head>
 <body>
+
+    <div id="dataDiv">
+            Data:
+            <p>Bob AAAABBCCCCCCCCCBBAAEEAAA</p>
+            <p>Jane    ABBCCCCCCCEECCCCBBAAAAAA</p>
+            <p>Ralph   FFFFFBJJCCCCECCCCJJFFFFF</p>
+            <p>Lisa    GGGGGBKKKKKEKKKKBGGGGGGG</p>
+            <p>Michael     HHHHHHLLLLHHHHHHHHHHHHHH</p>
+    </div>
+
     <div id="myDiv" ></div>
     <script>
     Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows) {
@@ -33,7 +52,7 @@
         title: 'Mt Bruno Elevation',
         autosize: false,
         width: 800,
-        height: 600,
+        height: 800,
         margin: {
             l: 65,
             r: 50,
