@@ -1,0 +1,228 @@
+<html>
+<head>
+
+    <title>AngelHack 2019 - EpiExigesis </title>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <style>
+
+        body {
+            margin: 0;
+            background-image: url('https://image.winudf.com/v2/image/Y29tLkxlZ2VuZExpdmUuVmlydXMxMV9zY3JlZW5fMF93bTRmOHM1NA/screen-0.jpg?fakeurl=1&type=.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #header {
+            width: 100%;
+            height: 120px;
+            background-color: white;
+            margin-bottom: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45pt;
+        }
+
+        #container {
+            height: 500px; 
+            min-width: 1000px; 
+            max-width: 400px;
+            margin: 0 auto 10px;
+        }
+
+        .centre {
+            width: 100%;
+        }
+
+        #content {
+            width: 100%;
+            background-color: white;
+            margin: 100px 0 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 25px 0 0 0;
+        }
+
+        #textBox {
+            width: 75%;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        #contentImg {
+            margin-bottom: 50px;
+        }
+
+        #footer {
+            text-align: center;
+            color: grey;
+            background-color: white;
+            font-size: 10pt;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id=header>EpiExigesis</div>
+
+    <img class='centre' src='../imgs/banner.jpg' alt='Crowded Arena'>
+
+    <div id=content>
+        <div id=textBox>
+        <h1>What is EpiExigesis?</h1>
+        <p>Discovery of epidemic patterns is extremely difficult because of the latency between cause and effect, the complexity of 
+            interactions between the agents, then prioritizing and evaluating the most significant parts. We provide a tool that use 
+            a Mutual Exposure scoring to rank and compare the relative risks and allows slicing by agent, time, and place.</p>
+        </div>
+        <div id="container" style="height: 500px"></div>
+        <h2>Plot Data</h2>
+        <img id="contentImg" width=95% src="https://files.slack.com/files-pri/TLG0X516J-FL7J51FDX/exposureforbobl.png" src="Agent Exposure">
+        <img id="contentImg" src="../imgs/meetings.jpg" src="Agent Meetings">
+    </div>
+
+    <div id="footer">Created Michael Patrick, Candace Wong, George Vernon, and Justin Tendeck for AngelHack Seattle 2019
+        <p>Credit: https://image.winudf.com/v2/image/Y29tLkxlZ2VuZExpdmUuVmlydXMxMV9zY3JlZW5fMF93bTRmOHM1NA/screen-0.jpg?fakeurl=1&type=.jpg - Virus Wallpaper</p>
+        <p>https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/3d-scatter-draggable/ - 3D Chart</p>
+    </div>
+
+    <script>
+    Highcharts.setOptions({
+        colors: Highcharts.getOptions().colors.map(function (color) {
+            return {
+                radialGradient: {
+                    cx: 0.4,
+                    cy: 0.3,
+                    r: 0.5
+                },
+                stops: [
+                    [0, color],
+                    [1, Highcharts.Color(color).brighten(-0.2).get('rgb')]
+                ]
+            };
+        })
+    });
+
+    // Set up the chart
+    var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container',
+            margin: 100,
+            type: 'scatter3d',
+            animation: false,
+            options3d: {
+                enabled: true,
+                alpha: 10,
+                beta: 30,
+                depth: 250,
+                viewDistance: 5,
+                fitToPlot: false,
+                frame: {
+                    bottom: { size: 1, color: 'rgba(0,0,0,0.02)' },
+                    back: { size: 1, color: 'rgba(0,0,0,0.04)' },
+                    side: { size: 1, color: 'rgba(0,0,0,0.06)' }
+                }
+            }
+        },
+        title: {
+            text: 'Draggable box'
+        },
+        subtitle: {
+            text: 'Click and drag the plot area to rotate in space'
+        },
+        plotOptions: {
+            scatter: {
+                width: 24,
+                height: 6,
+                depth: 5
+            }
+        },
+        yAxis: {
+            min: 0,
+            max: 5,
+            title: null
+        },
+        xAxis: {
+            min: 0,
+            max: 24,
+            gridLineWidth: 1
+        },
+        zAxis: {
+            min: 0,
+            max: 6,
+            showFirstLabel: false
+        },
+        legend: {
+            enabled: false
+        },
+        series: [{
+            name: 'Reading',
+            colorByPoint: true,
+            data: [
+            [0, 1, 1],  [1, 0, 1],  [2, 0, 1], [3, 0, 1],  [4, 0, 1],  [5, 2, 1] , [6, 1, 1],  [7, 1, 1], [8, 1, 1],  [9, 2, 1],  [10, 1, 1],  [11, 1, 1],  [12, 1, 1], [13, 2, 1],  [14, 2, 1],  [15, 0, 1] , [16, 2, 1],  [17, 0, 1], [18, 1, 1],  [19, 0, 1],  [20, 0, 1],  [21, 1, 1],  [22, 1, 1],  [23, 1, 1],
+            [0, 1, 2],  [1, 0, 2],  [2, 0, 2], [3, 0, 2],  [4, 0, 2],  [5, 0, 2] , [6, 0, 2],  [7, 1, 2], [8, 2, 2],  [9, 2, 2],  [10, 0, 2],  [11, 1, 2],  [12, 1, 2], [13, 2, 2],  [14, 2, 2],  [15, 1, 2] , [16, 2, 2],  [17, 0, 2], [18, 1, 2],  [19, 0, 2],  [20, 0, 2],  [21, 1, 2],  [22, 1, 2],  [23, 1, 2],
+            [0, 0, 3],  [1, 0, 3],  [2, 0, 3], [3, 0, 3],  [4, 0, 3],  [5, 2, 3] , [6, 0, 3],  [7, 0, 3], [8, 2, 3],  [9, 2, 3],  [10, 1, 3],  [11, 1, 3],  [12, 0, 3], [13, 2, 3],  [14, 2, 3],  [15, 1, 3] , [16, 0, 3],  [17, 0, 3], [18, 0, 3],  [19, 0, 3],  [20, 0, 3],  [21, 0, 3],  [22, 0, 3],  [23, 0, 3],
+            [0, 0, 4],  [1, 0, 4],  [2, 0, 4], [3, 0, 4],  [4, 0, 4],  [5, 2, 4] , [6, 0, 4],  [7, 0, 4], [8, 0, 4],  [9, 0, 4],  [10, 0, 4],  [11, 1, 4],  [12, 0, 4], [13, 0, 4],  [14, 0, 4],  [15, 0, 4] , [16, 2, 4],  [17, 0, 4], [18, 0, 4],  [19, 0, 4],  [20, 0, 4],  [21, 0, 4],  [22, 0, 4],  [23, 0, 4],
+            [0, 0, 5],  [1, 0, 5],  [2, 0, 5], [3, 0, 5],  [4, 0, 5],  [5, 0, 5] , [6, 0, 5],  [7, 0, 5], [8, 0, 5],  [9, 0, 5],  [10, 0, 5],  [11, 0, 5],  [12, 0, 5], [13, 0, 5],  [14, 0, 5],  [15, 0, 5] , [16, 0, 5],  [17, 0, 5], [18, 0, 5],  [19, 0, 5],  [20, 0, 5],  [21, 0, 5],  [22, 0, 5],  [23, 0, 5] ]
+        }]
+    });
+
+    // Add mouse and touch events for rotation
+    (function (H) {
+        function dragStart(eStart) {
+            eStart = chart.pointer.normalize(eStart);
+
+            var posX = eStart.chartX,
+                posY = eStart.chartY,
+                alpha = chart.options.chart.options3d.alpha,
+                beta = chart.options.chart.options3d.beta,
+                sensitivity = 5,  // lower is more sensitive
+                handlers = [];
+
+            function drag(e) {
+                // Get e.chartX and e.chartY
+                e = chart.pointer.normalize(e);
+
+                chart.update({
+                    chart: {
+                        options3d: {
+                            alpha: alpha + (e.chartY - posY) / sensitivity,
+                            beta: beta + (posX - e.chartX) / sensitivity
+                        }
+                    }
+                }, undefined, undefined, false);
+            }
+
+            function unbindAll() {
+                handlers.forEach(function (unbind) {
+                    if (unbind) {
+                        unbind();
+                    }
+                });
+                handlers.length = 0;
+            }
+
+            handlers.push(H.addEvent(document, 'mousemove', drag));
+            handlers.push(H.addEvent(document, 'touchmove', drag));
+
+
+            handlers.push(H.addEvent(document, 'mouseup', unbindAll));
+            handlers.push(H.addEvent(document, 'touchend', unbindAll));
+        }
+        H.addEvent(chart.container, 'mousedown', dragStart);
+        H.addEvent(chart.container, 'touchstart', dragStart);
+    }(Highcharts));
+    </script>
+
+</body>
+</html>

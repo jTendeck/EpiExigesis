@@ -1,0 +1,31 @@
+<head runat="server">
+        <title></title>
+        <script src="Scripts/jquery-1.12.4.js"></script>
+        <script>
+            $(function () {
+                document.getElementById('file').onchange = function () {
+                    debugger;
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function (progressEvent) {
+                        // Entire file
+                        console.log(this.result);
+                        // By lines
+                        var lines = this.result.split('\n');
+                        var list = [];
+                        for (var line = 0; line < lines.length; line++) {
+                            list.push(lines[line]);
+                        }
+                    };
+                    reader.readAsText(file);
+                };
+            });
+        </script>
+    </head>
+    <body>
+        <form id="form1" runat="server">
+            <div>
+                <input type="file" name="file" id="file"/>
+            </div>
+        </form>
+    </body>
